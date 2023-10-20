@@ -1,0 +1,34 @@
+import dev.jeka.core.api.java.JkJavaProcess;
+import dev.jeka.core.api.java.JkJavaRunner;
+import dev.jeka.core.api.project.JkProject;
+import dev.jeka.core.api.system.JkLog;
+import dev.jeka.plugins.springboot.JkSpringbootProjectConfigurator;
+
+//DEPS dev.jeka:jeka-core:0.10.28
+//DEPS dev.jeka:springboot-plugin:0.10.28
+public class Build {
+
+    public static void main(String[] args) {
+        JkLog.setDecorator(JkLog.Style.BRACE);
+        JkProject project = JkProject.of();
+        project.flatFacade()
+                .configureCompileDependencies(deps -> deps
+                    .and("org.springframework.boot:spring-boot-starter-web")
+                )
+                .configureTestDependencies(deps -> deps
+                    .and("org.springframework.boot:spring-boot-starter-test")
+                );
+        JkSpringbootProjectConfigurator.of()
+                .setSpringbootVersion("3.1.4")
+                .setCreateOriginalJar(false)
+                .configure(project);
+
+        project.artifactProducer.makeMainArtifact();
+
+        System.out.println("Running server on http://localhost:8080 ...");
+        JkJavaProcess.ofJavaJar(project.artifactProducer.getMainArtifactPath(), null)
+                .setDestroyAtJvmShutdown(true)
+                .exec();
+
+    }
+}
