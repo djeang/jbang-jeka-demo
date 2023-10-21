@@ -9,10 +9,8 @@ To run this demo, you have to install JBang, then run the following command from
 jbang Build.java
 ```
 
-This will compile, test, and run the Spring-Boot application.
+This [script](./Build.java) will compile, test, and run the Spring-Boot application.
 
 You can display the greetings message by opening your browser at http://localhost:8080.
-
-The Java build script called by JBang is located [here](./Build.java).
 
 Application source are located in [src](./src) directory.
