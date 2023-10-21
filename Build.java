@@ -15,7 +15,7 @@ public class Build {
         project.flatFacade()
                 .configureCompileDependencies(deps -> deps
                     .and("org.springframework.boot:spring-boot-starter-web")
-                        .and("com.github.lalyos:jfiglet:0.0.8")
+                    .and("com.github.lalyos:jfiglet:0.0.8")
                 )
                 .configureTestDependencies(deps -> deps
                     .and("org.springframework.boot:spring-boot-starter-test")
