@@ -4,9 +4,9 @@ import dev.jeka.core.tool.JkBean;
 import dev.jeka.core.tool.builtins.project.ProjectJkBean;
 import dev.jeka.plugins.springboot.SpringbootJkBean;
 
-// For the purpose of the demo, This file is not necessary as the project build
-// configuration is described in Build.java
-// However, we keep it here to generate intellij iml file, in accordance with the project dependencies
+// For the purpose of the demo, this file is not necessary as the project build
+// configuration is described in Build.java file.
+// However, we keep it here to generate IntelliJ iml file, in accordance with the project dependencies.
 class JekaBuild extends JkBean {
 
     final SpringbootJkBean springbootBean = getBean(SpringbootJkBean.class);
