@@ -1,6 +1,6 @@
+import dev.jeka.core.api.project.JkCompileLayout;
 import dev.jeka.core.api.project.JkProject;
 import dev.jeka.core.tool.JkBean;
-import dev.jeka.core.tool.JkDoc;
 import dev.jeka.core.tool.builtins.project.ProjectJkBean;
 import dev.jeka.plugins.springboot.SpringbootJkBean;
 
@@ -18,6 +18,8 @@ class JekaBuild extends JkBean {
 
     private void configure(JkProject project) {
         project.flatFacade()
+            .mixResourcesAndSources()
+            .setLayoutStyle(JkCompileLayout.Style.SIMPLE)
             .configureCompileDependencies(deps -> deps
                     .and("org.springframework.boot:spring-boot-starter-web")
                     .and("com.github.lalyos:jfiglet:0.0.8")

@@ -1,4 +1,4 @@
-package your.basepackage;
+package org.jbangjeka;
 
 import com.github.lalyos.jfiglet.FigletFont;
 import org.springframework.web.bind.annotation.GetMapping;

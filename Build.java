@@ -1,3 +1,4 @@
+import dev.jeka.core.api.project.JkCompileLayout;
 import dev.jeka.core.api.java.JkJavaProcess;
 import dev.jeka.core.api.project.JkProject;
 import dev.jeka.core.api.system.JkLog;
@@ -13,6 +14,8 @@ public class Build {
         JkLog.setDecorator(JkLog.Style.BRACE);
         JkProject project = JkProject.of();
         project.flatFacade()
+                .mixResourcesAndSources()
+                .setLayoutStyle(JkCompileLayout.Style.SIMPLE)
                 .configureCompileDependencies(deps -> deps
                     .and("org.springframework.boot:spring-boot-starter-web")
                     .and("com.github.lalyos:jfiglet:0.0.8")
@@ -30,7 +33,7 @@ public class Build {
         Path bootJar = springbootAdapter.createBootJar(project); // compile, test and produce bootable jar
 
         System.out.println("Running server on http://localhost:8080 ...");
-        JkJavaProcess.ofJavaJar(bootJar, null).setDestroyAtJvmShutdown(true).exec();
+        JkJavaProcess.ofJavaJar(bootJar).setDestroyAtJvmShutdown(true).exec();
     }
 
 }

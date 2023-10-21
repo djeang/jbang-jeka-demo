@@ -1,4 +1,4 @@
-package your.basepackage;
+package org.jbangjeka;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
