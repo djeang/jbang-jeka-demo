@@ -1,12 +1,12 @@
-import dev.jeka.core.api.java.JkJavaProcess;
 import dev.jeka.core.api.project.JkProject;
 import dev.jeka.core.tool.JkBean;
 import dev.jeka.core.tool.JkDoc;
-import dev.jeka.core.tool.JkInjectClasspath;
 import dev.jeka.core.tool.builtins.project.ProjectJkBean;
 import dev.jeka.plugins.springboot.SpringbootJkBean;
 
-@JkInjectClasspath("dev.jeka:springboot-plugin")
+// For the purpose of the demo, This file is not necessary as the project build
+// configuration is described in Build.java
+// However, we keep it here to generate intellij iml file, in accordance with the project dependencies
 class JekaBuild extends JkBean {
 
     final SpringbootJkBean springbootBean = getBean(SpringbootJkBean.class);
@@ -20,18 +20,13 @@ class JekaBuild extends JkBean {
         project.flatFacade()
             .configureCompileDependencies(deps -> deps
                     .and("org.springframework.boot:spring-boot-starter-web")
+                    .and("com.github.lalyos:jfiglet:0.0.8")
             )
             .configureTestDependencies(deps -> deps
                     .and("org.springframework.boot:spring-boot-starter-test")
             );
-        JkJavaProcess.ofJavaJar(project.artifactProducer.getMainArtifactPath(), null)
-                .setDestroyAtJvmShutdown(true)
-                .exec();
     }
 
-    @JkDoc("Cleans, tests and creates bootable jar.")
-    public void cleanPack() {
-        cleanOutput(); springbootBean.projectBean.pack();
-    }
+
 
 }
